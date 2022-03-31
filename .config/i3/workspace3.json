@@ -1,0 +1,26 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1168,
+       "width": 952,
+       "x": 2884,
+       "y": 28
+    },
+    "marks": [],
+    "name": "BlockSync.hs - xoken-node - Code - OSS",
+    "percent": 1,
+    "swallows": [
+       {
+       // "class": "^code\\-oss$",
+       // "instance": "^code\\-oss$",
+       // "machine": "^nithin\\-nzxt$",
+       // "title": "^BlockSync\\.hs\\ \\-\\ xoken\\-node\\ \\-\\ Code\\ \\-\\ OSS$",
+       // "window_role": "^browser\\-window$"
+       }
+    ],
+    "type": "con"
+}
+

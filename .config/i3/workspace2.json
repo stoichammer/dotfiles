@@ -1,0 +1,86 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "none",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 1180,
+       "width": 945,
+       "x": 2885,
+       "y": 10
+    },
+    "marks": [],
+    "name": "[OPEN] i3-save-tree - doesn't work - ArcoLinux -D -B Forum - Chromium",
+    "percent": 0.5,
+    "swallows": [
+       {
+       // "class": "^Chromium$",
+       // "instance": "^chromium$",
+       // "machine": "^nithin\\-nzxt$",
+       // "title": "^\\[OPEN\\]\\ i3\\-save\\-tree\\ \\-\\ doesn\\'t\\ work\\ \\-\\ ArcoLinux\\ \\-D\\ \\-B\\ Forum\\ \\-\\ Chromium$",
+       // "window_role": "^browser$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    // splitv split container with 2 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "marks": [],
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1123,
+               "width": 952,
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "~ : bash — Konsole",
+            "percent": 0.5,
+            "swallows": [
+               {
+               // "class": "^konsole$",
+               // "instance": "^konsole$",
+               // "machine": "^nithin\\-nzxt$",
+               // "title": "^\\~\\ \\:\\ bash\\ \\—\\ Konsole$",
+               // "window_role": "^MainWindow\\#1$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 388,
+               "width": 944,
+               "x": 0,
+               "y": 0
+            },
+            "marks": [],
+            "name": "nithin",
+            "percent": 0.5,
+            "swallows": [
+               {
+               // "class": "^Thunar$",
+               // "instance": "^Thunar$",
+               // "machine": "^nithin\\-nzxt$",
+               // "title": "^nithin$",
+               // "window_role": "^Thunar\\-1645980099\\-1032084122$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
