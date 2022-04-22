@@ -2,8 +2,8 @@
 ;;       in Emacs and init.el will be generated automatically!
 
 ;; You will most likely need to adjust this font size for your system!
-(defvar efs/default-font-size 18)
-(defvar efs/default-variable-font-size 18)
+(defvar efs/default-font-size 120)
+(defvar efs/default-variable-font-size 150)
 
 ;; Make frame transparency overridable
 ;;(defvar efs/frame-transparency '(90 . 90))
@@ -77,24 +77,13 @@
 ;;(set-face-attribute 'default nil :font "Fira Code Retina" :height efs/default-font-size)
 
 ;; Set the fixed pitch face
-;;(set-face-attribute 'fixed-pitch nil :font "Fira Code Retina" :height efs/default-font-size)
+(set-face-attribute 'fixed-pitch nil :font "Inconsolata" :height efs/default-font-size)
 
 ;; Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Cantarell" :height efs/default-variable-font-size :weight 'regular)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-(use-package general
-  :config
-  (general-create-definer efs/leader-keys
-    :keymaps '(normal insert visual emacs)
-    :prefix "SPC"
-    :global-prefix "C-SPC")
-
-  (efs/leader-keys
-    "t"  '(:ignore t :which-key "toggles")
-    "tt" '(counsel-load-theme :which-key "choose theme")))
 
 
 (use-package command-log-mode)
@@ -106,7 +95,7 @@
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
+  :custom ((doom-modeline-height 10)))
 
 (use-package which-key
   :init (which-key-mode)
@@ -172,8 +161,6 @@
   ("k" text-scale-decrease "out")
   ("f" nil "finished" :exit t))
 
-(efs/leader-keys
-  "ts" '(hydra-text-scale/body :which-key "scale text"))
 
 (defun efs/org-font-setup ()
   ;; Replace list hyphen with dot
@@ -339,13 +326,13 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-(defun efs/org-mode-visual-fill ()
-  (setq visual-fill-column-width 100
-        visual-fill-column-center-text t)
-  (visual-fill-column-mode 1))
+;;(defun efs/org-mode-visual-fill ()
+;;  (setq visual-fill-column-width 100
+;;        visual-fill-column-center-text t)
+;;  (visual-fill-column-mode 1))
 
-(use-package visual-fill-column
-  :hook (org-mode . efs/org-mode-visual-fill))
+;;(use-package visual-fill-column
+;;  :hook (org-mode . efs/org-mode-visual-fill))
 
 (org-babel-do-load-languages
   'org-babel-load-languages
@@ -551,10 +538,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("c4063322b5011829f7fdd7509979b5823e8eea2abf1fe5572ec4b7af1dd78519" default))
+   '("5f19cb23200e0ac301d42b880641128833067d341d22344806cdad48e6ec62f6" "6c531d6c3dbc344045af7829a3a20a09929e6c41d7a7278963f7d3215139f6a7" "c4063322b5011829f7fdd7509979b5823e8eea2abf1fe5572ec4b7af1dd78519" default))
  '(lsp-haskell-formatting-provider "fourmolu")
  '(package-selected-packages
-   '(tabbar haskell-mode lsp-haskell dired-hide-dotfiles dired-open all-the-icons-dired dired-single which-key vterm visual-fill-column use-package typescript-mode rainbow-delimiters pyvenv python-mode org-bullets no-littering lsp-ui lsp-ivy ivy-rich ivy-prescient helpful general forge eterm-256color eshell-git-prompt doom-themes doom-modeline dap-mode counsel-projectile company-box command-log-mode auto-package-update)))
+   '(htmlize key-chord evil-leader tabbar haskell-mode lsp-haskell dired-hide-dotfiles dired-open all-the-icons-dired dired-single which-key vterm visual-fill-column use-package typescript-mode rainbow-delimiters pyvenv python-mode org-bullets no-littering lsp-ui lsp-ivy ivy-rich ivy-prescient helpful general forge eterm-256color eshell-git-prompt doom-themes doom-modeline dap-mode counsel-projectile company-box command-log-mode auto-package-update)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -585,4 +572,76 @@
 (desktop-save-mode t)
 ;;(tab-bar-mode nil)
 
+(setq show-paren-delay 0)
+(show-paren-mode 1)
 
+(use-package evil)
+(use-package evil-leader)
+(use-package key-chord)
+
+(require 'evil)
+(evil-mode t)
+
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map ";l" 'evil-normal-state)
+
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "b b" 'switch-to-buffer
+  "b w" 'save-buffer
+  "b k" 'kill-buffer
+  "w o" 'other-window
+  "w d" 'delete-window
+  "w r" 'delete-other-window
+  "w h" 'split-window-right
+  "w v" 'split-window-below
+  "p p" 'projectile-switch-project
+  "p c" 'counsel-projectile
+  "p r" 'projectile-ripgrep
+  "s" 'swiper
+  "m" 'magit
+  "l f" 'lsp-format-buffer)
+
+
+(use-package htmlize)
+(require 'htmlize)
+;;This is the default setting. It highlights the code according to the current Emacs theme you are using. It directly applies color to the code with inline styles, e.g., int.
+;;The problem is that the highlight theme depends on the Emacs theme. If you use a dark theme in your Emacs but a light theme (usually we like light themed web pages) web pages, the exported code are hardly illegible due to the light font color, or vice versa.
+;;(setq org-html-htmlize-output-type 'inline-css)
+
+
+;;This configuration disables highlighting by htmlize.
+;;(setq org-html-htmlize-output-type nil)
+
+
+;;This is my preferred way. If you use my org.css, then set this option in your init file and you are all set.
+;;This is similar to the first option, instead of using inline styles, this will assign classes to each component of the code, e.g., <span class="org-type">int</span>, and you could create your own stylesheet for .org-type.
+;;To obtain a list of all supported org classes, run M-x org-html-htmlize-generate-css. This will create a buffer containing all the available org style class names in the current Emacs session (refer to src/css/htmlize.css for an example).
+(setq org-html-htmlize-output-type 'css)
+
+;; (setq org-html-htmlize-font-prefix "") ;; default
+(setq org-html-htmlize-font-prefix "org-")
+
+;; to instruct org-mode to embed all the css from my stylesheet into a single HTML file, rather than including a link to it as it does by default
+
+(defun my-org-inline-css-hook (exporter)
+  "Insert custom inline css"
+  (when (eq exporter 'html)
+    (let* ((dir (ignore-errors (file-name-directory (buffer-file-name))))
+           (path (concat dir "style.css"))
+           (homestyle (or (null dir) (null (file-exists-p path))))
+           (final (if homestyle "~/dotfiles/.my-css-themes/leuven.css" path))) ;; <- set your own style file path
+      (setq org-html-head-include-default-style nil)
+      (setq org-html-head (concat
+                           "<style type=\"text/css\">\n"
+                           "<!--/*--><![CDATA[/*><!--*/\n"
+                           (with-temp-buffer
+                             (insert-file-contents final)
+                             (buffer-string))
+                           "/*]]>*/-->\n"
+                           "</style>\n")))))
+
+(add-hook 'org-export-before-processing-hook 'my-org-inline-css-hook)
